@@ -1,9 +1,9 @@
 let puzzle = ["  *  ", "  *  ", "*****", "  *  ", "  *  "];
 let concatonatedArrays = [];
 
-enterPuzzle(puzzle);
+formatPuzzle(puzzle);
 solvePuzzle();
-function enterPuzzle(puzzle) {
+function formatPuzzle(puzzle) {
   for (let j = 0; j < puzzle.length; j++) {
     concatonatedArrays.push(puzzle[j].split(""));
   }
