@@ -1,24 +1,20 @@
 let puzzle = ["  *  ", "  *  ", "*****", "  *  ", "  *  "];
 let concatonatedArrays = [];
 
-enterPuzzleSize(puzzle);
+enterPuzzle(puzzle);
 solvePuzzle();
-function enterPuzzleSize(puzzle) {
-  console.log(puzzle.length, "length");
-
+function enterPuzzle(puzzle) {
   for (let j = 0; j < puzzle.length; j++) {
-    console.log(puzzle[j], "og");
     concatonatedArrays.push(puzzle[j].split(""));
   }
-
-  console.log(concatonatedArrays, "digested puzzle");
 }
 
 function solvePuzzle(digestedPuzzle) {
   for (let x = 0; x < concatonatedArrays.length; x++) {
     for (let y = 0; y < concatonatedArrays[0].length; y++) {
+      
       let count = 0;
-      console.log("were reading", concatonatedArrays[x][y]);
+
       if (concatonatedArrays[x][y] !== "*") {
         if (
           concatonatedArrays[x - 1] !== undefined &&
