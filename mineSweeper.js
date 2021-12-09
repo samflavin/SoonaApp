@@ -1,18 +1,18 @@
 let puzzle = ["  *  ", "  *  ", "*****", "  *  ", "  *  "];
-let concatonatedArrays = [];
 
-formatPuzzle(puzzle);
-solvePuzzle();
-function formatPuzzle(puzzle) {
+annotate(puzzle);
+
+function annotate(puzzle) {
+  let concatonatedArrays = [];
   for (let j = 0; j < puzzle.length; j++) {
     concatonatedArrays.push(puzzle[j].split(""));
   }
+  return solvePuzzle(concatonatedArrays);
 }
 
-function solvePuzzle(digestedPuzzle) {
+function solvePuzzle(concatonatedArrays) {
   for (let x = 0; x < concatonatedArrays.length; x++) {
     for (let y = 0; y < concatonatedArrays[0].length; y++) {
-      
       let count = 0;
 
       if (concatonatedArrays[x][y] !== "*") {
@@ -82,12 +82,12 @@ function solvePuzzle(digestedPuzzle) {
     }
   }
 
-  arraysToString(concatonatedArrays);
+  return arraysToString(concatonatedArrays);
 }
 
-function arraysToString(arrays, puzzleWidth) {
+function arraysToString(arrays) {
   let modified = arrays.join().replaceAll(",", "");
-  let width = (puzzleWidth = arrays.length);
+  let width = arrays.length;
 
   const wrap = (str, width) => {
     var letters = [],
@@ -97,6 +97,6 @@ function arraysToString(arrays, puzzleWidth) {
     }
     return letters.join("\n");
   };
-
-  console.log(wrap(modified, width));
+  return wrap(modified, width);
 }
+console.log(annotate(puzzle));
