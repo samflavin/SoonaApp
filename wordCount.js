@@ -1,6 +1,6 @@
 let text = "car: carpet as java: javascript!!&@$%^&";
 
-function getWordArray(text) {
+function countWords(text) {
   let textWithoutPunctuation = text.replace(/[^a-zA-Z0-9 \n\r+]/gim, "");
   let wordArray = textWithoutPunctuation.match(/\b\w+\b/gim);
 
@@ -26,4 +26,4 @@ function getWordCount(wordArray) {
   return wordCountArrayNoDuplicates;
 }
 
-console.log(getWordArray(text));
+console.log(countWords(text));
