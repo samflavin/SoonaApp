@@ -1,29 +1,32 @@
-let text = "car: carpet as java: javascript!!&@$%^&";
 
-function countWords(text) {
-  let textWithoutPunctuation = text.replace(/[^a-zA-Z0-9 \n\r+]/gim, "");
-  let wordArray = textWithoutPunctuation.match(/\b\w+\b/gim);
+export const countWords = (text) => {
+  let standardizedSring = text.trim().toLowerCase();
 
-  return getWordCount(wordArray);
-}
+  standardizedSring.replace(/[^\w\s]|_/g, "");
 
-function getWordCount(wordArray) {
-  let countedWords = [];
-  for (let x = 0; x < wordArray.length; x++) {
-    let count = 0;
-    for (let y = 0; y < wordArray.length; y++) {
-      if (wordArray[x] === wordArray[y]) {
-        count += 1;
-      }
+  let wordArray = standardizedSring.split(/\W+/gim);
+
+  for (let i = 0; i < wordArray.length; i++) {
+    if (wordArray[i + 1] !== undefined && wordArray[i + 1] === "t") {
+      wordArray[i] = `${wordArray[i]}'${wordArray[i + 1]}`;
+      wordArray.splice(i + 1, 1);
     }
-    countedWords.push(wordArray[x] + ":" + count);
   }
 
-  let wordCountArrayNoDuplicates = countedWords.filter((c, index) => {
-    return countedWords.indexOf(c) === index;
-  });
+  let countedWords = {};
+  for (let x = 0; x < wordArray.length; x++) {
+    let count = 0;
 
-  return wordCountArrayNoDuplicates;
-}
-
-console.log(countWords(text));
+    for (let y = 0; y < wordArray.length; y++) {
+      if (wordArray[x] === wordArray[y]) {
+ 
+        count += 1;
+      }
+      let currentWord = wordArray[x];
+      if (currentWord !== "") {
+        countedWords[currentWord] = count;
+      }
+    }
+  }
+  return countedWords;
+};
